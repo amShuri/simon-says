@@ -1,2 +1,3 @@
-# simon-says
- Built with HTML, JS and Bootstrap
+# Simon Says Game
+
+Built with HTML, JS and Bootstrap.

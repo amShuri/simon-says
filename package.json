@@ -1,0 +1,22 @@
+{
+  "name": "simon-says",
+  "version": "1.0.0",
+  "description": "Simon Says game built with HTML, JS and Bootstrap.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amShuri/simon-says.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amShuri/simon-says/issues"
+  },
+  "homepage": "https://github.com/amShuri/simon-says#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.1"
+  }
+}
