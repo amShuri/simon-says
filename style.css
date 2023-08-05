@@ -1,0 +1,39 @@
+.container {
+  max-width: 450px;
+}
+
+#blue {
+  background-color: #0193e7;
+}
+
+#green {
+  background-color: #8fb413;
+}
+
+#red {
+  background-color: #e51325;
+}
+
+#orange {
+  background-color: #f9bf00;
+}
+
+.tile {
+  border: 0;
+  opacity: 0.5;
+  padding: 6rem 5rem;
+  height: 100px;
+  width: 200px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.highlighted {
+  opacity: 1;
+}
+
+@media screen and (max-width: 350px) {
+  .tile {
+    padding: 3rem 6rem;
+  }
+}

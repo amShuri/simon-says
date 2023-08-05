@@ -7,7 +7,37 @@
     <link rel="stylesheet" href="style.css" />
     <title>Simon Says Game</title>
   </head>
-  <body>
+  <body class="mx-auto mt-3">
+    <div class="container">
+      <div class="row" id="start-game">
+        <div class="col p-1">
+          <button class="btn btn-primary bg-gradient w-100" id="start-button">
+            Start Game
+          </button>
+        </div>
+      </div>
+
+      <div id="game-board">
+        <div class="row" id="top-tiles">
+          <div class="col p-1">
+            <button class="tile" id="blue" disabled></button>
+          </div>
+          <div class="col p-1">
+            <button class="tile" id="green" disabled></button>
+          </div>
+        </div>
+
+        <div class="row" id="bottom-tiles">
+          <div class="col p-1">
+            <button class="tile" id="red" disabled></button>
+          </div>
+
+          <div class="col p-1">
+            <button class="tile" id="orange" disabled></button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
