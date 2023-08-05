@@ -76,7 +76,13 @@ function enableUserInput() {
 }
 
 function updateGameStatus(status) {
-  document.querySelector('#game-status p').textContent = status;
+  const $gameStatus = document.querySelector('#game-status p');
+  $gameStatus.textContent = status;
+  if (status !== 'your turn') {
+    $gameStatus.classList.remove('highlighted');
+  } else {
+    $gameStatus.classList.add('highlighted');
+  }
 }
 
 function stopGame() {
