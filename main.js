@@ -41,6 +41,7 @@ function playComputerTurn() {
     userSequence.splice(0);
   }
   disableUserInput();
+  updateGameStatus('computer turn');
 
   const $computerTile = getRandomTile();
   computerSequence.push($computerTile);
@@ -56,6 +57,7 @@ function playComputerTurn() {
   const computerTurnDuration = (computerSequence.length + 1) * TURN_DURATION_MS;
   setTimeout(() => {
     enableUserInput();
+    updateGameStatus('your turn');
   }, computerTurnDuration);
 }
 
@@ -73,8 +75,13 @@ function enableUserInput() {
   document.querySelectorAll('.tile').forEach((btn) => (btn.disabled = false));
 }
 
+function updateGameStatus(status) {
+  document.querySelector('#game-status p').textContent = status;
+}
+
 function stopGame() {
   alert('Game Over');
+  updateGameStatus('game over');
   disableUserInput();
-  document.querySelector('#start-button').textContent = 'Play Again';
+  document.querySelector('#start-button').textContent = 'play again';
 }
