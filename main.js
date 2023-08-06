@@ -5,6 +5,10 @@ const HIGHLIGHT_DURATION_MS = 500;
 let userScore = 0;
 
 document.querySelector('#start-button').onclick = function () {
+  if (userScore > 0) {
+    userScore = 0;
+    displayScore(userScore);
+  }
   disableStartButton();
   playComputerTurn();
 };
