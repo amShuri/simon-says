@@ -26,19 +26,26 @@ button {
 .tile {
   border: 0;
   padding: 6rem 5rem;
-  height: 100px;
-  width: 200px;
   width: 100%;
 }
 
 .tile,
-#game-status p {
+#status-display {
   opacity: 0.5;
   transition: opacity 500ms;
 }
 
 .highlighted {
   opacity: 1 !important;
+}
+
+#status-display {
+  border-bottom-right-radius: 5px;
+}
+
+#score-display {
+  background-color: #59a883;
+  border-bottom-left-radius: 5px;
 }
 
 @media screen and (max-width: 350px) {

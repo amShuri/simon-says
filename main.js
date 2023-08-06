@@ -2,6 +2,7 @@ const computerSequence = [];
 const userSequence = [];
 const TURN_DURATION_MS = 1000;
 const HIGHLIGHT_DURATION_MS = 500;
+let userScore = 0;
 
 document.querySelector('#start-button').onclick = function () {
   disableStartButton();
@@ -23,6 +24,8 @@ document.querySelector('#game-board').onclick = function (e) {
   if (computerSequence.length === userSequence.length) {
     disableUserInput();
     setTimeout(() => {
+      userScore += 1;
+      displayScore(userScore);
       playComputerTurn();
     }, TURN_DURATION_MS);
   }
@@ -74,7 +77,7 @@ function enableUserInput() {
 }
 
 function updateGameStatus(status) {
-  const $gameStatus = document.querySelector('#game-status p');
+  const $gameStatus = document.querySelector('#status-display');
   $gameStatus.textContent = status;
   if (status !== 'your turn') {
     $gameStatus.classList.remove('highlighted');
@@ -93,6 +96,10 @@ function enableStartButton() {
 
 function resetSequence(sequence) {
   sequence.splice(0);
+}
+
+function displayScore(score) {
+  document.querySelector('#score-display').textContent = `Score: ${score}`;
 }
 
 function stopGame() {
