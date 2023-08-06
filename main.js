@@ -1,7 +1,7 @@
 const computerSequence = [];
 const userSequence = [];
-const TURN_DURATION_MS = 1000;
-const HIGHLIGHT_DURATION_MS = 500;
+let turnDurationMs = 1000;
+let highlightDurationMs = 500;
 let userScore = 0;
 
 document.querySelector('#start-button').onclick = function () {
@@ -17,7 +17,7 @@ document.querySelector('#game-board').onclick = function (e) {
   if (e.target.tagName !== 'BUTTON') return;
   const $userTile = e.target;
   userSequence.push($userTile);
-  highlightTile($userTile, HIGHLIGHT_DURATION_MS);
+  highlightTile($userTile, highlightDurationMs);
 
   const $computerTile = computerSequence[userSequence.length - 1];
   if ($computerTile !== $userTile) {
@@ -31,8 +31,15 @@ document.querySelector('#game-board').onclick = function (e) {
       userScore += 1;
       displayScore(userScore);
       playComputerTurn();
-    }, TURN_DURATION_MS);
+    }, turnDurationMs);
   }
+};
+
+document.querySelector('#game-speed').onclick = function (e) {
+  if (e.target.tagName !== 'INPUT') return;
+  const gameSpeed = e.target.value;
+  turnDurationMs = gameSpeed;
+  highlightDurationMs = gameSpeed / 2;
 };
 
 function getRandomTile() {
@@ -53,13 +60,13 @@ function playComputerTurn() {
 
   for (let i = 0; i < computerSequence.length; i += 1) {
     const currentTile = computerSequence[i];
-    const highlightDelay = (i + 1) * TURN_DURATION_MS;
+    const highlightDelay = (i + 1) * turnDurationMs;
     setTimeout(() => {
-      highlightTile(currentTile, HIGHLIGHT_DURATION_MS);
+      highlightTile(currentTile, highlightDurationMs);
     }, highlightDelay);
   }
 
-  const computerTurnDuration = (computerSequence.length + 1) * TURN_DURATION_MS;
+  const computerTurnDuration = (computerSequence.length + 1) * turnDurationMs;
   setTimeout(() => {
     enableUserInput();
     updateGameStatus('your turn');
