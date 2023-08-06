@@ -4,9 +4,6 @@ const TURN_DURATION_MS = 1000;
 const HIGHLIGHT_DURATION_MS = 500;
 
 document.querySelector('#start-button').onclick = function () {
-  if (computerSequence.length > 0) {
-    computerSequence.splice(0);
-  }
   playComputerTurn();
 };
 
@@ -38,7 +35,7 @@ function getRandomTile() {
 
 function playComputerTurn() {
   if (userSequence.length > 0) {
-    userSequence.splice(0);
+    resetSequence(userSequence);
   }
   disableUserInput();
   updateGameStatus('computer turn');
@@ -85,9 +82,14 @@ function updateGameStatus(status) {
   }
 }
 
+function resetSequence(sequence) {
+  sequence.splice(0);
+}
+
 function stopGame() {
   alert('Game Over');
   updateGameStatus('game over');
   disableUserInput();
+  resetSequence(computerSequence);
   document.querySelector('#start-button').textContent = 'play again';
 }
