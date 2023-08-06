@@ -4,6 +4,7 @@ const TURN_DURATION_MS = 1000;
 const HIGHLIGHT_DURATION_MS = 500;
 
 document.querySelector('#start-button').onclick = function () {
+  disableStartButton();
   playComputerTurn();
 };
 
@@ -82,6 +83,14 @@ function updateGameStatus(status) {
   }
 }
 
+function disableStartButton() {
+  document.querySelector('#start-button').disabled = true;
+}
+
+function enableStartButton() {
+  document.querySelector('#start-button').disabled = false;
+}
+
 function resetSequence(sequence) {
   sequence.splice(0);
 }
@@ -91,5 +100,6 @@ function stopGame() {
   updateGameStatus('game over');
   disableUserInput();
   resetSequence(computerSequence);
+  enableStartButton();
   document.querySelector('#start-button').textContent = 'play again';
 }
