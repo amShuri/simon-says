@@ -4,43 +4,56 @@ let turnDurationMs = 1000;
 let highlightDurationMs = 500;
 let userScore = 0;
 
-document.querySelector('#start-button').onclick = function () {
-  if (userScore > 0) {
-    userScore = 0;
-    displayScore(userScore);
-  }
-  disableStartButton();
-  playComputerTurn();
-};
+document.querySelector('#start-button').onclick = startGame;
 
 document.querySelector('#game-board').onclick = function (e) {
+  handleUserTileClick(e);
+};
+
+document.querySelector('#game-speed').onclick = function (e) {
+  updateGameSpeed(e);
+};
+
+function startGame() {
+  displayScore(userScore);
+  disableStartButton();
+  playComputerTurn();
+}
+
+function handleUserTileClick(e) {
   if (e.target.tagName !== 'BUTTON') return;
+
   const $userTile = e.target;
   userSequence.push($userTile);
   highlightTile($userTile, highlightDurationMs);
 
-  const $computerTile = computerSequence[userSequence.length - 1];
-  if ($computerTile !== $userTile) {
+  const computerTile = computerSequence[userSequence.length - 1];
+  if (computerTile !== $userTile) {
     stopGame();
     return;
   }
 
   if (computerSequence.length === userSequence.length) {
-    disableUserInput();
-    setTimeout(() => {
-      userScore += 1;
-      displayScore(userScore);
-      playComputerTurn();
-    }, turnDurationMs);
+    handleUserTurnCompletion();
   }
-};
+}
 
-document.querySelector('#game-speed').onclick = function (e) {
+function handleUserTurnCompletion() {
+  disableUserInput();
+  setTimeout(() => {
+    userScore += 1;
+    displayScore(userScore);
+    playComputerTurn();
+  }, turnDurationMs);
+}
+
+function updateGameSpeed(e) {
   if (e.target.tagName !== 'INPUT') return;
-  const gameSpeed = e.target.value;
-  turnDurationMs = gameSpeed;
-  highlightDurationMs = gameSpeed / 2;
-};
+
+  const userSelectedValue = e.target.value;
+  turnDurationMs = userSelectedValue;
+  highlightDurationMs = userSelectedValue / 2;
+}
 
 function getRandomTile() {
   const $gameTiles = document.querySelectorAll('.tile');
@@ -114,7 +127,7 @@ function displayScore(score) {
 }
 
 function stopGame() {
-  alert('Game Over');
+  userScore = 0;
   updateGameStatus('game over');
   disableUserInput();
   resetSequence(computerSequence);
